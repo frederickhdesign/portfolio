@@ -694,7 +694,7 @@ function TitleOverlay({
     >
       <span
         style={{
-          fontFamily: "Glixels, regular",
+          fontFamily: "Glixels, monospace",
           fontSize: "24px",
           lineHeight: 1,
           transform: "translateY(-1px)",
