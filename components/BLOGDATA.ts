@@ -105,5 +105,131 @@ Throughout my research so far, I’ve noticed that even within game design, the 
 
 If you're reading this from my portfolio site, hi! we've come a long way!!
     `
+  },
+  {
+    id: 4,
+    title: "Day In The Life of a UI Designer",
+    type: "LOG",
+    date: "30/03/2026",
+    updated: "1/04/2026",
+    content: `
+I've taken some time to actually consider what I'd do, in my daily life, as UI designer in the future. This is more than the designs and what gets seen, but the process behind those ideas and creations. The daily routines and habits that allow for those ideas to thrive and the creative problem solving process that doesn't always get to be seen.
+
+7:30AM - SOMEHOW WAKE UP
+
+I guess you could argue the first interface I and many people interact with on a daily basis is my own alarm. Naturally, I immediately reject it's primary action.
+
+Most mornings have a brief war between me and the snooze button until my responsibilities creep up on me, then I'm up in a flash.
+
+8:00AM _ CATCH UP
+
+Before any work is actually done, I check emails from developers, feedback, look for updates on current projects. After all, especially in a job environment, UI design is part of one big ecosystem of design and it's highly collaborative.
+
+9:00AM - COMMUTE TO WORK
+
+Naturally most professional designers work in a studio or office setting of some sort. So first step of working each day is actually reaching your workplace. There's nothing special to say about this, you drive or walk, throw on a few songs and head on over.
+
+10:00AM - WORK BEGINS
+
+Now this you could say is where the fun starts.
+
+I'd expect large collaborative projects to kick off and/or end each day with a brief meeting and catchup between developers and designers. Else I'd jump straight into it.
+
+At this point in the day, I'll do any necessary planning, research and more. Then that's followed by jumping into my tools, from Figma to Adobe XD or other software such as Adobe After Effects.
+
+It's worth noting it's not just a goal to make things look nice, every choice has a purpose, a certain communication it's meant to provide. Half of my time is probably going to be spent zoomed in nudging pixels that nobody would notice anyway, but would feel wrong without being done.
+
+12:00PM - LUNCH
+
+Lunch time is lunch time, usually my lunch times consist of grabbing some bussin bussin food and disturbing the peace of those around me… I always retain a good mood in the room though.
+
+13:00PM - BACK TO WORK
+
+I haven't worked in a design job but what I've always noticed when having any job is after lunch time is the hardest part of the day, every time. After coming to a halt for an hour or so and eating some food, getting back into the rhythm takes time, and even then it's not as easy.
+
+That being said, an ideal afternoon would be combatting this as a designer, and getting right back where I left off, perhaps receiving feedback beforehand.
+
+16:00PM - RUN AWAY (END OF WORK)
+
+At this point the day has finally come to an end. Emails and updates are sent around the team, I have a look at what's been completed, what's next and leave my own updates.
+
+Everyone collectively breathes a sigh of relief to be able to go home and rest, followed with commuting back home in what is probably a similar or identical fashion to how you first commuted to work in the morning.
+
+18:00PM - DINNER
+
+After having had a good lunch, it's now time for some equally tasty dinner. If it were up to me, I'd definitely go for something like a burger… perhaps? No particular reason.
+
+19:00 - EVENING
+
+I'd say I would plan out my next day but I am not and never have been a planner. It's always been something along the lines of "wake up on time, tend to my responsibilities and see where the day takes me".
+
+My evenings would likely consist of self reflection, personal projects, resting, watching things and playing a few games before bed.
+
+23:00PM - SLEEP
+
+This is fairly self explanatory, we all need to rest before the rematch with the snooze button in the morning.
+
+CONCLUSIONS
+
+Whilst every day can and will look a bit different, however this gives a somewhat realistic glimpse into a daily life of a UI designer. There's a balance of work and time to ones self that's needed to maintain a strong mental state, which is vital in retaining a creative drive and mindset.
+    `
+  },
+  {
+    id: 5,
+    title: "Chaos and Communication",
+    type: "LOG",
+    date: "02/04/2026",
+    updated: "2/04/2026",
+    content: `
+I wanted to make an entry about a tricky challenge I encounter when diving into UI design; That challenge is balancing creativity and useability.
+
+MY PORTFOLIO
+
+Recently I’ve been working on my portfolio and it’s been the best first hand experience of this tension that I’ve experienced so far, as for all my interest in UI design, I’ve never properly done it before now.
+
+First and foremost I’ve come to the realisation that I don’t want a standard portfolio. Something you can just scroll through, glance at and likely forget after clicking off of it. I want something that sticks around once you finish interacting with it, something you have to actually explore and engage with even just a little bit.
+
+Naturally this led me to what I’m making now: 3D Elements, unconventional layouts, retro visuals, hidden details that reward a viewer or potential employers curiosity. However there’s been multiple points, or ideas that I have where I have to take a step back and think something like: “is this interesting or distracting?”.
+
+COMMUNICATION
+
+This is where experimenting with proper communication within this portfolio comes in.
+
+It’s easy to accidentally design something that only makes sense for me, the person who knows it inside out… I understand every decision behind it, where everything is and how everything works. However others don’t have that context, they only see the final product.
+
+With the style I’m building I have noticed that at times it can risk crossing over from being unique to being more overwhelming or confusing, at which point it wouldn’t matter how interesting it is.
+
+I’ve been working hard on this and I feel I’m well in the middle of that balance, I’m working on building a standout but easily digestible format for a first time viewer.
+
+WHATS MY POINT?
+
+This is a more spontaneous post but I think it’s important to remember that a good design doesn’t just look good but also communicates an idea. When making a portfolio, that communicated idea has to do a bit more though; to me it has to communicate the person behind it, their values and their personality.
+    `
+  },
+  {
+    id: 6,
+    title: "Interview and Elevator Pitch",
+    type: "LOG",
+    date: "02/04/2026",
+    updated: "2/04/2026",
+    content: `
+    I’ve always felt like I’m fairly good at interviews, no master by any means but not bad. Last week at university, we started with a bit of practice by doing elevator pitches. An elevator pitch is a short ~30 second summary designed to introduce yourself, a product and/or an idea. In preparation for this elevator pitch I chose not to write any more than bullet points, helping to avoid unnecessary waffle and points.
+
+    MY ELEVATOR PITCH
+
+    For our pitches we were grouped in pairs of two and encouraged to record each others pitches. I’ll be honest, as soon as there’s a camera in my face my interview skills can easily go from 100 to 0, I can get quite awkward and not really know what to say. From our recorded versions, that did track, unfortunately I was clearly more nervous and not really knowing what to say, my mind went a bit blank. That being said we did do a run through without the camera too and this went far better. I felt far more confident and able to talk about myself and what I do as well as the value I’d bring to a hypothetical team; I was able to keep my pitch short and formal too.
+
+    INTERVIEWS
+
+    This week we continued this direction by following an interview format this time. In our new pairs, we had a set of 15 questions about design, ourselves and working in teams to read to each other, for the other side to answer.
+
+    This format was far better for myself, with my feedback confirming this. I found myself being able to answer pretty much every question fairly easily and without stuttering too much. However, I’d say my worst point for my skills in interviewing is my body language; I tend to lean in my chair or sink down into my chair, as well as moving my hands around a lot and fidgeting (this doesn’t come from being nervous for me, it’s just me).
+
+    It’s worth noting I’m not a very formal person, however I am capable of being professional when neccessary. I think my body language is the one part I struggle to control the most in those situations, and could be a distraction for possible interviewers in the future, it’s something I’d definitely like to work on.
+
+    REFLECTION
+
+    I think my main take away from this is to work on things like fidgeting, and being able to relax physically when in formal environments. As well as this, I want to be able to perform the same whether there’s a camera in my face or not, so perhaps taking time to practice recording myself even just talking would go a long way in helping me incase I show up to an interview one day with a camera in my face.
+    `
   }
 ];

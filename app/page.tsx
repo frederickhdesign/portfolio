@@ -859,7 +859,7 @@ function IntroOverlay({
             textTransform: "uppercase",
           }}
         >
-          UI Designer
+          Graphic - UI Designer
         </div>
 
         <div
@@ -876,8 +876,8 @@ function IntroOverlay({
             transition: "opacity 500ms ease, transform 500ms ease",
           }}
         >
-          This portfolio is optimised for 1080p and 1440p displays as to preserve the layout and visual intent. 
-          Mobile support is limited but a work in progress, so things may be a a little unpredictable on smaller screens.
+          This portfolio is optimised for 1080p and 1440p displays as to preserve the layout and visual intent.
+          Mobile support is limited, so things may be a a little unpredictable on smaller screens.
         </div>
 
         <button
@@ -940,6 +940,7 @@ export default function Page() {
   const notebookOpenRef = useRef<HTMLAudioElement | null>(null);
   const powerOnRef = useRef<HTMLAudioElement | null>(null);
   const fanRef = useRef<HTMLAudioElement | null>(null);
+  const portfolioAmbienceRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const timers: number[] = [];
@@ -994,6 +995,12 @@ export default function Page() {
     fanAudio.preload = "auto";
     fanRef.current = fanAudio;
 
+    const portfolioAmbienceAudio = new Audio("/audio/PORTFOLIOAMBIANCE.mp3");
+    portfolioAmbienceAudio.loop = true;
+    portfolioAmbienceAudio.volume = 0.5;
+    portfolioAmbienceAudio.preload = "auto";
+    portfolioAmbienceRef.current = portfolioAmbienceAudio;
+
     return () => {
       hoverAudio.pause();
       hoverAudio.currentTime = 0;
@@ -1012,6 +1019,9 @@ export default function Page() {
 
       fanAudio.pause();
       fanAudio.currentTime = 0;
+
+      portfolioAmbienceAudio.pause();
+      portfolioAmbienceAudio.currentTime = 0;
     };
   }, []);
 
@@ -1038,28 +1048,51 @@ export default function Page() {
     }
   }, [activeView]);
 
-  const stopFan = useCallback(() => {
+  const stopOverlayAmbience = useCallback(() => {
     const fan = fanRef.current;
-    if (!fan) return;
+    const portfolioAmbience = portfolioAmbienceRef.current;
 
-    fan.pause();
-    fan.currentTime = 0;
+    if (fan) {
+      fan.pause();
+      fan.currentTime = 0;
+    }
+
+    if (portfolioAmbience) {
+      portfolioAmbience.pause();
+      portfolioAmbience.currentTime = 0;
+    }
   }, []);
 
-  const startFan = useCallback(() => {
+  const startOverlayAmbience = useCallback((screenName: ScreenName) => {
     const fan = fanRef.current;
-    if (!fan) return;
+    const portfolioAmbience = portfolioAmbienceRef.current;
 
-    fan.pause();
-    fan.currentTime = 0;
+    if (fan) {
+      fan.pause();
+      fan.currentTime = 0;
+    }
+
+    if (portfolioAmbience) {
+      portfolioAmbience.pause();
+      portfolioAmbience.currentTime = 0;
+    }
+
+    if (screenName === "SCREEN-PORTFOLIO") {
+      if (!portfolioAmbience) return;
+      portfolioAmbience.volume = 0.5;
+      portfolioAmbience.play().catch(() => {});
+      return;
+    }
+
+    if (!fan) return;
     fan.volume = 0.05;
     fan.play().catch(() => {});
   }, []);
 
   const closeActiveView = useCallback(() => {
-    stopFan();
+    stopOverlayAmbience();
     setActiveView(null);
-  }, [stopFan]);
+  }, [stopOverlayAmbience]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -1211,18 +1244,18 @@ export default function Page() {
           onScreenHoverStart={playHoverTick}
           onScreenClick={(screenName) => {
             playMenuOpen();
-            startFan();
+            startOverlayAmbience(screenName);
             setActiveView({ type: "screen", name: screenName });
           }}
           onNotebookHoverChange={setNotebookHovered}
           onNotebookClick={() => {
-            stopFan();
+            stopOverlayAmbience();
             playNotebookOpen();
             setActiveView({ type: "notebook" });
           }}
           onPrinterPaperHoverChange={setPrinterPaperHovered}
           onPrinterPaperClick={() => {
-            stopFan();
+            stopOverlayAmbience();
             playNotebookOpen();
             setActiveView({ type: "cv" });
           }}

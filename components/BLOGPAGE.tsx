@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { blogEntries } from "./BLOGDATA";
 
 export default function BLOGPAGE() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [readingMode, setReadingMode] = useState(false);
   const [selectedId, setSelectedId] = useState(1);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
@@ -112,7 +112,7 @@ export default function BLOGPAGE() {
         body {
           margin: 0;
           padding: 0;
-          background: #8f8f8f;
+          background: #dcdcdc;
           overflow: hidden;
         }
 
@@ -124,6 +124,9 @@ export default function BLOGPAGE() {
       <div className="wrapper">
         <div className="crt-frame">
           <div className="crt-screen">
+            <div className="screen-glow" />
+            <div className="screen-noise" />
+
             {!bootComplete ? (
               <div className="bootOverlay">
                 <div className="loginTerminal">
@@ -177,7 +180,7 @@ export default function BLOGPAGE() {
                 </div>
               </div>
             ) : (
-              <div className={`appWindow ${darkMode ? "dark" : ""}`}>
+              <div className={`appWindow ${readingMode ? "reading" : ""}`}>
                 <header className="topBar">
                   <div className="titleCluster">
                     <span className="windowDot" />
@@ -292,11 +295,11 @@ export default function BLOGPAGE() {
 
                   <button
                     className="modeToggle"
-                    onClick={() => setDarkMode((prev) => !prev)}
-                    aria-label="Toggle dark mode"
+                    onClick={() => setReadingMode((prev) => !prev)}
+                    aria-label="Toggle reading mode"
                   >
-                    <span>DISPLAY MODE</span>
-                    <span className={`toggleBox ${darkMode ? "on" : ""}`}>
+                    <span>READING MODE</span>
+                    <span className={`toggleBox ${readingMode ? "on" : ""}`}>
                       <span className="toggleKnob" />
                     </span>
                   </button>
@@ -396,18 +399,22 @@ export default function BLOGPAGE() {
         .crt-screen {
           width: min(80vw, 1000px);
           height: min(65vh, 900px);
-          background: radial-gradient(
-            ellipse at center,
-            #2a2a2a 0%,
-            #1a1a1a 70%,
-            #0d0d0d 100%
-          );
           position: relative;
           overflow: hidden;
           font-family: "Glixels", sans-serif;
+          color: #72ff9f;
+          background:
+            radial-gradient(
+              ellipse at center,
+              rgba(17, 56, 28, 0.96) 0%,
+              rgba(7, 22, 11, 0.985) 58%,
+              rgba(2, 8, 4, 1) 100%
+            );
           box-shadow:
             inset 0 0 60px rgba(0, 0, 0, 0.9),
-            inset 0 0 20px rgba(255, 255, 255, 0.05);
+            inset 0 0 20px rgba(255, 255, 255, 0.05),
+            0 0 30px rgba(79, 255, 140, 0.08);
+          animation: screenFlicker 5s infinite linear;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -419,13 +426,14 @@ export default function BLOGPAGE() {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          background: radial-gradient(
-            ellipse at center,
-            transparent 62%,
-            rgba(0, 0, 0, 0.18) 82%,
-            rgba(0, 0, 0, 0.42) 100%
-          );
-          z-index: 3;
+          background:
+            radial-gradient(
+              ellipse at center,
+              transparent 58%,
+              rgba(0, 0, 0, 0.16) 78%,
+              rgba(0, 0, 0, 0.42) 100%
+            );
+          z-index: 10;
         }
 
         .crt-screen::after {
@@ -435,17 +443,49 @@ export default function BLOGPAGE() {
           pointer-events: none;
           background: repeating-linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.025) 0px,
-            rgba(255, 255, 255, 0.025) 1px,
+            rgba(120, 255, 170, 0.085) 0px,
+            rgba(120, 255, 170, 0.085) 1px,
             transparent 2px,
             transparent 4px
           );
-          z-index: 3;
+          mix-blend-mode: screen;
+          opacity: 0.55;
+          z-index: 11;
+        }
+
+        .screen-glow {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background:
+            radial-gradient(
+              ellipse at center,
+              rgba(90, 255, 150, 0.1) 0%,
+              rgba(90, 255, 150, 0.03) 45%,
+              transparent 75%
+            );
+          z-index: 1;
+        }
+
+        .screen-noise {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0.045;
+          z-index: 2;
+          background-image:
+            repeating-linear-gradient(
+              to right,
+              rgba(255, 255, 255, 0.15) 0px,
+              rgba(255, 255, 255, 0.15) 1px,
+              transparent 1px,
+              transparent 3px
+            );
         }
 
         .bootOverlay {
           position: relative;
-          z-index: 2;
+          z-index: 3;
           width: 100%;
           height: 100%;
           display: flex;
@@ -456,12 +496,16 @@ export default function BLOGPAGE() {
 
         .loginTerminal {
           width: min(92%, 560px);
-          background: #cfcfcf;
-          color: #d9d9d9;
-          border: 2px solid #cfcfcf;
+          border: 1px solid rgba(114, 255, 159, 0.5);
+          background:
+            linear-gradient(
+              to bottom,
+              rgba(10, 28, 15, 0.98),
+              rgba(4, 16, 8, 0.98)
+            );
           box-shadow:
-            inset -2px -2px 0 #050505,
-            inset 2px 2px 0 #5d5d5d;
+            0 0 18px rgba(114, 255, 159, 0.08),
+            inset 0 0 18px rgba(114, 255, 159, 0.04);
         }
 
         .loginHeader {
@@ -470,11 +514,14 @@ export default function BLOGPAGE() {
           align-items: center;
           gap: 0.45rem;
           padding: 0 0.7rem;
-          background: #cfcfcf;
-          border-bottom: 2px solid #afafaf;
-          color: #1d8f56;
+          background: rgba(114, 255, 159, 0.045);
+          border-bottom: 1px solid rgba(114, 255, 159, 0.35);
+          color: #85ffaf;
           font-size: clamp(0.7rem, 1vw, 0.95rem);
           letter-spacing: 0.05em;
+          text-shadow:
+            0 0 5px rgba(114, 255, 159, 0.45),
+            0 0 10px rgba(114, 255, 159, 0.12);
         }
 
         .loginBody {
@@ -484,8 +531,11 @@ export default function BLOGPAGE() {
           flex-direction: column;
           justify-content: center;
           background:
-            linear-gradient(rgba(29, 143, 86, 0.025), rgba(29, 143, 86, 0.025)),
-            #101010;
+            linear-gradient(
+              to bottom,
+              rgba(8, 22, 11, 0.96),
+              rgba(3, 12, 6, 0.98)
+            );
         }
 
         .loginLine,
@@ -493,18 +543,21 @@ export default function BLOGPAGE() {
           font-size: clamp(0.8rem, 1vw, 1rem);
           line-height: 1.5;
           letter-spacing: 0.05em;
+          text-shadow:
+            0 0 5px rgba(114, 255, 159, 0.42),
+            0 0 10px rgba(114, 255, 159, 0.08);
         }
 
         .systemLine {
-          color: #9ac7ad;
+          color: #9effbe;
         }
 
         .accentLine {
-          color: #e6db74;
+          color: #ffe08a;
         }
 
         .grantedLine {
-          color: #1d8f56;
+          color: #72ff9f;
         }
 
         .loginSpacer {
@@ -520,11 +573,11 @@ export default function BLOGPAGE() {
         }
 
         .loginLabel {
-          color: #cfcfcf;
+          color: #85ffaf;
         }
 
         .loginValue {
-          color: #ffffff;
+          color: #d8ffe6;
           min-height: 1.2rem;
         }
 
@@ -546,51 +599,54 @@ export default function BLOGPAGE() {
         }
 
         .appWindow {
-          --bg: #cfcfcf;
-          --panel: #e8e8e8;
-          --panelInset: #f4f4f4;
-          --text: #111111;
-          --borderDark: #111111;
-          --borderMid: #606060;
-          --borderLight: #ffffff;
-          --muted: #3d3d3d;
-          --accent: #1d8f56;
-          --active: #111111;
-          --activeText: #f4f4f4;
-          --statusBg: #d9d9d9;
-          --scrollbarThumbBorder: var(--borderDark);
-          --scrollbarThumbHoverFill: rgba(0, 0, 0, 0.14);
+          --bg: rgba(4, 16, 8, 0.92);
+          --panel: rgba(7, 22, 11, 0.92);
+          --panelInset: rgba(10, 28, 15, 0.96);
+          --text: #85ffaf;
+          --borderDark: rgba(3, 10, 5, 0.95);
+          --borderMid: rgba(114, 255, 159, 0.18);
+          --borderLight: rgba(114, 255, 159, 0.36);
+          --muted: #a8e6bc;
+          --accent: #72ff9f;
+          --active: rgba(114, 255, 159, 0.12);
+          --activeText: #d8ffe6;
+          --statusBg: rgba(3, 12, 6, 0.96);
+          --scrollbarThumbBorder: rgba(114, 255, 159, 0.34);
+          --scrollbarThumbHoverFill: rgba(114, 255, 159, 0.08);
 
           position: relative;
-          z-index: 2;
+          z-index: 3;
           width: 100%;
           height: 100%;
           background: var(--bg);
           color: var(--text);
-          border: 2px solid var(--borderLight);
+          border: 1px solid var(--borderLight);
           box-shadow:
-            inset -2px -2px 0 var(--borderDark),
-            inset 2px 2px 0 var(--borderMid);
+            0 0 18px rgba(114, 255, 159, 0.08),
+            inset 0 0 18px rgba(114, 255, 159, 0.04);
           display: grid;
           grid-template-rows: auto 1fr auto;
           overflow: hidden;
-          --scrollbarThumbBorder: var(--borderLight);
-          --scrollbarThumbHoverFill: rgba(255, 255, 255, 0.14);
+          text-shadow:
+            0 0 5px rgba(114, 255, 159, 0.42),
+            0 0 10px rgba(114, 255, 159, 0.08);
         }
 
-        .appWindow.dark {
-          --bg: #161616;
-          --panel: #1f1f1f;
-          --panelInset: #141414;
-          --text: #efefef;
-          --borderDark: #050505;
-          --borderMid: #5d5d5d;
-          --borderLight: #d8d8d8;
-          --muted: #b8b8b8;
-          --accent: #1d8f56;
-          --active: #efefef;
-          --activeText: #111111;
-          --statusBg: #1b1b1b;
+        .appWindow.reading {
+          --bg: rgba(24, 13, 5, 0.94);
+          --panel: rgba(32, 17, 7, 0.94);
+          --panelInset: rgba(42, 22, 9, 0.96);
+          --text: #ffc978;
+          --borderDark: rgba(12, 6, 2, 0.96);
+          --borderMid: rgba(255, 190, 110, 0.18);
+          --borderLight: rgba(255, 190, 110, 0.34);
+          --muted: #f0c892;
+          --accent: #ffb964;
+          --active: rgba(255, 185, 100, 0.13);
+          --activeText: #fff0d7;
+          --statusBg: rgba(20, 11, 4, 0.97);
+          --scrollbarThumbBorder: rgba(255, 190, 110, 0.34);
+          --scrollbarThumbHoverFill: rgba(255, 185, 100, 0.08);
         }
 
         .topBar,
@@ -604,18 +660,27 @@ export default function BLOGPAGE() {
 
         .topBar {
           min-height: 3rem;
-          background: var(--panelInset);
-          border-bottom: 2px solid var(--borderDark);
-          box-shadow: inset 0 1px 0 var(--borderLight);
+          background: rgba(114, 255, 159, 0.045);
+          border-bottom: 1px solid var(--borderLight);
+          box-shadow: inset 0 1px 0 rgba(114, 255, 159, 0.04);
+        }
+
+        .appWindow.reading .topBar {
+          background: rgba(255, 185, 100, 0.045);
+          box-shadow: inset 0 1px 0 rgba(255, 185, 100, 0.04);
         }
 
         .bottomBar {
           min-height: 2.3rem;
           background: var(--statusBg);
-          border-top: 2px solid var(--borderDark);
-          box-shadow: inset 0 1px 0 var(--borderLight);
+          border-top: 1px solid var(--borderLight);
+          box-shadow: inset 0 1px 0 rgba(114, 255, 159, 0.04);
           font-size: clamp(0.55rem, 0.8vw, 0.8rem);
           gap: 1rem;
+        }
+
+        .appWindow.reading .bottomBar {
+          box-shadow: inset 0 1px 0 rgba(255, 185, 100, 0.04);
         }
 
         .titleCluster {
@@ -628,9 +693,10 @@ export default function BLOGPAGE() {
         .windowDot {
           width: 0.55rem;
           height: 0.55rem;
-          background: var(--accent, #1d8f56);
-          border: 1px solid #050505;
+          background: var(--accent, #72ff9f);
+          border: 1px solid var(--borderLight);
           flex-shrink: 0;
+          box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 45%, transparent);
         }
 
         .windowLabel,
@@ -650,7 +716,7 @@ export default function BLOGPAGE() {
           gap: 0;
           min-height: 0;
           padding: 0.35rem;
-          background: var(--bg);
+          background: transparent;
         }
 
         .panel {
@@ -658,10 +724,16 @@ export default function BLOGPAGE() {
           display: grid;
           grid-template-rows: auto 1fr;
           background: var(--panel);
-          border: 2px solid var(--borderLight);
+          border: 1px solid var(--borderLight);
           box-shadow:
-            inset -2px -2px 0 var(--borderDark),
-            inset 2px 2px 0 var(--borderMid);
+            0 0 14px rgba(114, 255, 159, 0.04),
+            inset 0 0 14px rgba(114, 255, 159, 0.03);
+        }
+
+        .appWindow.reading .panel {
+          box-shadow:
+            0 0 14px rgba(255, 185, 100, 0.04),
+            inset 0 0 14px rgba(255, 185, 100, 0.03);
         }
 
         .entriesPanel {
@@ -673,11 +745,15 @@ export default function BLOGPAGE() {
           display: flex;
           align-items: center;
           padding: 0 0.55rem;
-          background: var(--panelInset);
-          border-bottom: 2px solid var(--borderDark);
+          background: rgba(114, 255, 159, 0.045);
+          border-bottom: 1px solid var(--borderLight);
           color: var(--accent);
           font-size: clamp(0.58rem, 0.85vw, 0.82rem);
           letter-spacing: 0.06em;
+        }
+
+        .appWindow.reading .panelLabel {
+          background: rgba(255, 185, 100, 0.045);
         }
 
         .panelLabelWithButton {
@@ -686,7 +762,7 @@ export default function BLOGPAGE() {
         }
 
         .sortToggle {
-          border: 1px solid var(--borderDark);
+          border: 1px solid var(--borderLight);
           background: transparent;
           color: var(--accent);
           font-family: "Glixels", sans-serif;
@@ -694,16 +770,13 @@ export default function BLOGPAGE() {
           line-height: 1;
           padding: 0.2rem 0.45rem;
           cursor: pointer;
-          box-shadow: inset 1px 1px 0 var(--borderLight);
-          flex-shrink: 0;
+          text-shadow:
+            0 0 5px color-mix(in srgb, var(--accent) 45%, transparent),
+            0 0 10px color-mix(in srgb, var(--accent) 12%, transparent);
         }
 
         .sortToggle:hover {
-          background: rgba(0, 0, 0, 0.06);
-        }
-
-        .appWindow.dark .sortToggle:hover {
-          background: rgba(255, 255, 255, 0.06);
+          background: color-mix(in srgb, var(--accent) 8%, transparent);
         }
 
         .entriesColumn,
@@ -717,7 +790,7 @@ export default function BLOGPAGE() {
           width: 100%;
           min-height: 4.2rem;
           border: 0;
-          border-bottom: 2px solid var(--borderDark);
+          border-bottom: 1px solid var(--borderLight);
           background: transparent;
           color: var(--text);
           text-align: left;
@@ -727,15 +800,19 @@ export default function BLOGPAGE() {
           display: grid;
           grid-template-columns: 2rem 1fr;
           gap: 0.45rem;
+          text-shadow:
+            0 0 5px color-mix(in srgb, var(--accent) 40%, transparent),
+            0 0 10px color-mix(in srgb, var(--accent) 8%, transparent);
         }
 
         .entryCard:hover {
-          background: rgba(0, 0, 0, 0.06);
+          background: color-mix(in srgb, var(--accent) 6%, transparent);
         }
 
         .entryCard.active {
           background: var(--active);
           color: var(--activeText);
+          box-shadow: inset 0 0 8px color-mix(in srgb, var(--accent) 10%, transparent);
         }
 
         .entryNumber {
@@ -768,8 +845,16 @@ export default function BLOGPAGE() {
           min-height: 100%;
           background: var(--panelInset);
           margin: 0.45rem;
-          border: 2px solid var(--borderDark);
-          box-shadow: inset 1px 1px 0 var(--borderLight);
+          border: 1px solid var(--borderLight);
+          box-shadow:
+            0 0 12px rgba(114, 255, 159, 0.03),
+            inset 0 0 12px rgba(114, 255, 159, 0.03);
+        }
+
+        .appWindow.reading .postInner {
+          box-shadow:
+            0 0 12px rgba(255, 185, 100, 0.03),
+            inset 0 0 12px rgba(255, 185, 100, 0.03);
         }
 
         .postContent {
@@ -846,17 +931,20 @@ export default function BLOGPAGE() {
           cursor: pointer;
           padding: 0;
           flex-shrink: 0;
+          text-shadow:
+            0 0 5px color-mix(in srgb, var(--accent) 45%, transparent),
+            0 0 10px color-mix(in srgb, var(--accent) 10%, transparent);
         }
 
         .toggleBox {
           width: 3.2rem;
           height: 1rem;
-          border: 2px solid var(--borderDark);
+          border: 1px solid var(--borderLight);
           background: var(--panelInset);
           display: flex;
           align-items: center;
           padding: 1px;
-          box-shadow: inset 1px 1px 0 var(--borderLight);
+          box-shadow: inset 0 0 8px color-mix(in srgb, var(--accent) 6%, transparent);
         }
 
         .toggleKnob {
@@ -865,6 +953,7 @@ export default function BLOGPAGE() {
           background: var(--accent);
           border: 1px solid var(--borderDark);
           transform: translateX(0);
+          box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 35%, transparent);
         }
 
         .toggleBox.on .toggleKnob {
@@ -883,7 +972,7 @@ export default function BLOGPAGE() {
 
         .entriesColumn::-webkit-scrollbar-thumb,
         .postColumn::-webkit-scrollbar-thumb {
-          border: 2px solid var(--scrollbarThumbBorder);
+          border: 1px solid var(--scrollbarThumbBorder);
           background:
             linear-gradient(var(--muted), var(--muted)) center calc(50% - 4px) /
               8px 2px no-repeat,
@@ -902,6 +991,24 @@ export default function BLOGPAGE() {
         .entriesColumn::-webkit-scrollbar-corner,
         .postColumn::-webkit-scrollbar-corner {
           background: var(--panelInset);
+        }
+
+        @keyframes screenFlicker {
+          0% {
+            opacity: 0.99;
+          }
+          2% {
+            opacity: 0.97;
+          }
+          3% {
+            opacity: 0.985;
+          }
+          10% {
+            opacity: 0.975;
+          }
+          100% {
+            opacity: 0.99;
+          }
         }
 
         @media (max-width: 900px) {
