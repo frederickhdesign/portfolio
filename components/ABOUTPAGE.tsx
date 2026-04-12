@@ -309,7 +309,7 @@ export default function ABOUTPAGE() {
       <style jsx global>{`
         @font-face {
           font-family: "Glixels";
-          src: url("/Fonts/Glixels-Regular.otf") format("opentype");
+          src: url("/Fonts/Glixels-Regular.woff2") format("woff2");
           font-display: swap;
         }
 
