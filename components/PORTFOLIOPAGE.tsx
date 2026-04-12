@@ -337,15 +337,31 @@ const playClickSound = () => {
                             </div>
 
                             <div className="project-description-block">
-                              {selectedProject.description ? (
-                                <p>{selectedProject.description}</p>
-                              ) : (
-                                <p>
-                                  Add a description in PORTFOLIODATA.ts for this
-                                  project.
-                                </p>
-                              )}
-                            </div>
+  {selectedProject.description
+    .trim()
+    .split("\n")
+    .map((line, index) => {
+      const trimmed = line.trim();
+
+      if (!trimmed) {
+        return <div key={index} className="spacer" />;
+      }
+
+      const isHeading =
+        trimmed === trimmed.toUpperCase() &&
+        trimmed.length < 60;
+
+      if (isHeading) {
+        return (
+          <h2 key={index} className="project-heading">
+            {trimmed}
+          </h2>
+        );
+      }
+
+      return <p key={index}>{trimmed}</p>;
+    })}
+</div>
                           </div>
 
                           <div className="project-sidebar">
@@ -921,6 +937,17 @@ const playClickSound = () => {
           color: #ffb8b8;
         }
 
+        .project-heading {
+  margin: 0.5rem 0 0rem;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: #ff9d9d;
+}
+
+.spacer {
+  height: 1rem;
+}
+
         .overlay-header,
         .project-overlay-header,
         .image-overlay-header {
@@ -1129,26 +1156,39 @@ const playClickSound = () => {
         }
 
         .portfolio-grid::-webkit-scrollbar,
-        .project-image-list::-webkit-scrollbar {
-          width: 16px;
-        }
+.project-image-list::-webkit-scrollbar,
+.project-main-column::-webkit-scrollbar {
+  width: 16px;
+}
 
-        .portfolio-grid::-webkit-scrollbar-track,
-        .project-image-list::-webkit-scrollbar-track {
-          background: rgba(12, 4, 4, 0.72);
-        }
+.portfolio-grid::-webkit-scrollbar-track,
+.project-image-list::-webkit-scrollbar-track,
+.project-main-column::-webkit-scrollbar-track {
+  background: rgba(12, 4, 4, 0.72);
+}
 
-        .portfolio-grid::-webkit-scrollbar-thumb,
-        .project-image-list::-webkit-scrollbar-thumb {
-          border: 1px solid rgba(255, 95, 95, 0.26);
-          background:
-            linear-gradient(#ffb2b2, #ffb2b2) center calc(50% - 4px) / 8px 2px
-              no-repeat,
-            linear-gradient(#ffb2b2, #ffb2b2) center 50% / 8px 2px no-repeat,
-            linear-gradient(#ffb2b2, #ffb2b2) center calc(50% + 4px) / 8px 2px
-              no-repeat;
-          min-height: 34px;
-        }
+.portfolio-grid::-webkit-scrollbar-thumb,
+.project-image-list::-webkit-scrollbar-thumb,
+.project-main-column::-webkit-scrollbar-thumb {
+  border: 1px solid rgba(255, 95, 95, 0.26);
+  background:
+    linear-gradient(#ffb2b2, #ffb2b2) center calc(50% - 4px) / 8px 2px no-repeat,
+    linear-gradient(#ffb2b2, #ffb2b2) center 50% / 8px 2px no-repeat,
+    linear-gradient(#ffb2b2, #ffb2b2) center calc(50% + 4px) / 8px 2px no-repeat;
+  min-height: 34px;
+}
+
+.portfolio-grid::-webkit-scrollbar-thumb:hover,
+.project-image-list::-webkit-scrollbar-thumb:hover,
+.project-main-column::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 0 999px rgba(255, 120, 120, 0.08);
+}
+
+.portfolio-grid::-webkit-scrollbar-corner,
+.project-image-list::-webkit-scrollbar-corner,
+.project-main-column::-webkit-scrollbar-corner {
+  background: rgba(12, 4, 4, 0.72);
+}
 
         .portfolio-card {
           width: 100%;
@@ -1194,7 +1234,8 @@ const playClickSound = () => {
         .portfolio-cover-image {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          object-position: center;
           display: block;
         }
 
@@ -1308,8 +1349,8 @@ const playClickSound = () => {
 
         .project-description-block p {
           margin: 0;
-          font-size: 0.92rem;
-          line-height: 1.8;
+          font-size: 1.3rem;
+          line-height: 1;
           letter-spacing: 0.03em;
           color: #ffe0e0;
           white-space: pre-wrap;
