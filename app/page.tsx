@@ -694,7 +694,7 @@ function TitleOverlay({
     >
       <span
         style={{
-          fontFamily: "Glixels, monospace",
+          fontFamily: "Glixels, regular",
           fontSize: "24px",
           lineHeight: 1,
           transform: "translateY(-1px)",
@@ -1236,12 +1236,12 @@ export default function Page() {
       }}
     >
       <style jsx global>{`
-        @font-face {
-          font-family: "Glixels";
-          src: url("/Fonts/GLIXELS.woff2") format("woff2");
-          font-display: swap;
-        }
-      `}</style>
+  @font-face {
+    font-family: "Glixels";
+    src: url("/Fonts/Glixels-Regular.woff2") format("woff2");
+    font-display: swap;
+  }
+`}</style>
 
       {!activeView && introPhase === "done" && (
         <TitleOverlay
