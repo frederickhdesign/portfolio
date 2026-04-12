@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
-:root {
+
+
+@font-face {
+  font-family: "Glixels";
+  src: url("/Fonts/Glixels-Regular.woff2") format("woff2");
+  font-display: swap;
+}:root {
+  
   --background: #ffffff;
   --foreground: #171717;
 }
