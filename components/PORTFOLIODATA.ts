@@ -33,7 +33,7 @@ export const portfolioEntries: PortfolioEntry[] = [
     cover: "/foliowork/neon-interface-cover.webp",
     tags: ["UI Design", "Web Design"],
     description:
-      "A mock portfolio project entry used as a template. Replace this with your real project description whenever you add your own work.",
+      "N/A",
     images: [
       "/public/foliowork/neon-interface-1.webp",
       "/public/foliowork/neon-interface-2.webp",
