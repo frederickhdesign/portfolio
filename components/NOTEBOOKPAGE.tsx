@@ -27,7 +27,9 @@ export default function NOTEBOOKPAGE() {
 
 This document will run through the various softwares, techniques and areas of design I've covered throughout the creation of this portfolio.
 
-This portfolio was designed and developed by myself, with some assistance of AI tools solely for implementation purposes.`,
+This portfolio was designed and developed by myself, with some assistance of AI tools solely for implementation purposes.
+
+Also, I promise I'll get more images in here soon... for now have a read!`,
       footerName: "FREDERICK HARDEN",
       pageNumber: "01",
       images: ["/sprites/LOGOFHBLACK.webp"],
@@ -44,7 +46,90 @@ With some tutorials for practice, I was able to pick it up fairly quick and chos
 I finished this off by adding a lightbulb and a small ceiling element at the top.`,
       footerName: "FREDERICK HARDEN",
       pageNumber: "02",
+      //images: []
     },
+    {
+      fileNumber: "03",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "SOUND DESIGN",
+      text: `When making this site I wanted a truly interactive and immersive experience, after making the first sections I realised something major was missing, sound.
+      
+      How I have done sound for this site is relatively simple and self explanatory, I've taken royalty free sounds, adding them to my project folder and importing them within my code.
+      
+      Whilst this is a simple thing, its worth noting. I've included a range of ambiance and button sounds, as well as music for the portfolio.`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "03",
+      //images: []
+    },
+    {
+      fileNumber: "04",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "VS CODE",
+      text: `The trickiest part of this project for me was the coding.
+      
+      I'd say overall, the code for this site has been pretty 50 50, I've tried my best to do as much as I can myself however I have employed the help of ChatGPT when neccessary for trickier elements. For example rebuilding the screens I designed directly in code, as uploading everything as images would take lots of space.
+      
+      This has been the first time I've touched much coding in years, but I've had a brilliant time. But it's worth reminding myself, I'm a designer, not a devloper yet.`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "04",
+      //images: []
+    },
+    {
+      fileNumber: "05",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "TYPEFACE",
+      text: `Weirdly, my favourite thing I've done for this entire project is the typeface I developed, solely for this portfolio.
+      
+      The typeface is called Glixels, it's the typeface you're reading this text in right now!
+      
+      I have chosen a pixel themed typeface as I started my design journey through pixel art. Pixel art is what pushed me into design in the first place, with many of my early early projects being based solely around it. 
+      
+      I felt that referencing this in my portfolio would be a strong personal touch.`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "05",
+      //images: []
+    },
+    {
+      fileNumber: "06",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "LANDING PAGE",
+      text: `For the landing page, I took my blender model and implemented it into my site using Next.js and VS Code.
+      
+      I tried my best to style this site to look like a retro/PS1 experience, this is why the objects are somewhat low poly and the lighting is a bit funny, it's intentional I promise.
+      
+      I've made it so that monitors light up on hovering them with the mouse, and you can rotate the scene by clicking and dragging, explore!`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "06",
+      //images: []
+    },
+    {
+      fileNumber: "07",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "SCREEN DESIGNS",
+      text: `For the actual screens, I took inspiration from old fashioned CRT monitors, with the horizontal scanlines and gradient colours I've used. I've made green a common colour as it's my favourite colour, no other reason, however red is used on the portfolio screen to make it stand out.
+      
+      I've done this to reinforce the style I've been going for here, retro PS1 inspired graphics, from the 3D modelling to the UI interfaces. 
+      
+      This helped me establish consistency across not only my portfolio here, but I've translated this style to my other pages, such as my Behance and LinkedIn.`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "07",
+      //images: []
+    },
+    {
+      fileNumber: "08",
+      archiveLabel: "ARCHIVE : PORTFOLIO INFO",
+      title: "WHY ALL THIS",
+      text: `Recently at university, we've been focusing on our specific design specialisms.
+      
+      I grew up fascinated by video game menus, UI's all of that. Games and their unique graphics pushed me into design and that part of my work has been lost over the years.
+      
+      This site has been my jump back into that world. My goal as a designer is to work on games that I love someday, as a passionate life long gamer.
+      
+      This site is my first step into putting myself out there in the UI Design/development world.`,
+      footerName: "FREDERICK HARDEN",
+      pageNumber: "08",
+      //images: []
+    }
   ];
 
   useEffect(() => {

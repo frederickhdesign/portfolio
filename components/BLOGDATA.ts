@@ -231,5 +231,57 @@ This is a more spontaneous post but I think it’s important to remember that a 
 
     I think my main take away from this is to work on things like fidgeting, and being able to relax physically when in formal environments. As well as this, I want to be able to perform the same whether there’s a camera in my face or not, so perhaps taking time to practice recording myself even just talking would go a long way in helping me incase I show up to an interview one day with a camera in my face.
     `
+  },
+  {
+    id: 7,
+    title: "My Summer Plans In and Outside of Design",
+    type: "LOG",
+    date: "02/04/2026",
+    updated: "2/04/2026",
+    content: `
+    Whilst we were tasked with action planning within design for the summer, I wanted to push beyond that and post about how I plan on improving as both a person and a designer over summer. As well as highlighting how I want to make a push toward my chosen design specialism over this time too.
+
+    Here’s a short post explaining how I’ve been planning.
+
+    DESIGN
+
+    As a designer, as discussed in my early entries, I’ve never been able to focus or zoom in on one particular design specialism; this summer I want to change that fact.
+
+    As my portfolio website is nearing completion toward the end of this semester, I’ve come to the realisation I need to actually build some content to fill in that portfolio, else what purpose does it serve. I’ve come up with a few ideas of how I can display different areas of UI design and include these examples. For example:
+
+    - Redesigning the menus of my favourite video games
+
+    - Designing websites, such as a HardenedMMA website
+
+    - App design, unsure of what exactly right now
+
+    - Work on my coding skills, languages such as Java, HTML, and C++, adding onto my current base of C# and Python.
+
+    - Software’s, become more confident with After Effects, Blender and development software’s such as Unity and Unreal Engine, which I’ve experimented with in the past.
+
+    I think these are the primary things I should focus on when it comes to pivoting toward UI design, especially as my main goal as a UI designer would be to work on game UI’s for high profile games in the future.
+
+    I also want to work on networking, particularly with attending design events and talks such as Birmingham Design Festival, whilst expanding my presence across platforms such as LinkedIn and Behance, helping to put myself out there more.
+
+    WHAT ABOUT ME
+
+    I’ve been, scheming, on how I can work on myself personally over summer and I’ve already made a start on this too. The primary focuses of this part of my life are:
+
+    - Supporting myself, working and eating plenty
+
+    - Gym consistently, getting back into the shape I’ve lost over the past couple years
+
+    - Get back into MMA properly (for once I’ve been saying for 2 years)
+
+    Whilst these don’t directly do much for my design career, I believe it’ll help my massively with my personal discipline when it comes to my day to day life; making it easier to sit down and make something over the summer when it sometimes feels like I should be taking a break from design and university.
+
+    EXTRA'S
+
+    Some extra activities this summer:
+
+    - ORDER Degree show, I’ve agreed to show up on the 14th of May and operate the bar for the third years.
+
+    - Seeing friends back in Oxfordshire and elsewhere, generally travelling seeing friend’s who aren’t so local.
+    `
   }
 ];

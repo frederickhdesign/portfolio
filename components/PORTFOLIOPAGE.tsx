@@ -535,8 +535,9 @@ const playClickSound = () => {
         }
 
         .crt-screen {
-          width: min(80vw, 1000px);
-          height: min(70vh, 900px);
+  width: min(88vw, 1180px, calc(78vh * 10 / 9));
+  aspect-ratio: 10 / 9;
+  height: auto;
           position: relative;
           overflow: hidden;
           font-family: "Glixels", sans-serif;

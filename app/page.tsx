@@ -657,6 +657,56 @@ function TitleOverlay({
   );
 }
 
+  function ExitButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label="Close"
+      style={{
+        position: "fixed",
+        top: "18px",
+        right: "18px",
+        zIndex: 45,
+        width: "48px",
+        height: "48px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(90, 90, 90, 0.82)",
+        border: "2px solid rgba(255, 255, 255, 0.9)",
+        color: "#ffffff",
+        cursor: "pointer",
+        boxSizing: "border-box",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        transition: "background 180ms ease, transform 180ms ease, border-color 180ms ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "rgba(120, 120, 120, 0.92)";
+        e.currentTarget.style.borderColor = "#ffffff";
+        e.currentTarget.style.transform = "scale(1.04)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "rgba(90, 90, 90, 0.82)";
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.9)";
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "Glixels, monospace",
+          fontSize: "24px",
+          lineHeight: 1,
+          transform: "translateY(-1px)",
+          userSelect: "none",
+        }}
+      >
+        ×
+      </span>
+    </button>
+  );
+}
+
 function CVOverlay({ onClose }: { onClose: () => void }) {
   return (
     <div
@@ -870,14 +920,14 @@ function IntroOverlay({
             letterSpacing: "0.08em",
             lineHeight: 1.6,
             color: "rgba(243, 238, 226, 0.82)",
-            maxWidth: "780px",
+            maxWidth: "740px",
             opacity: showMessage ? 1 : 0,
             transform: showMessage ? "translateY(0px)" : "translateY(10px)",
             transition: "opacity 500ms ease, transform 500ms ease",
           }}
         >
           This portfolio is optimised for 1080p and 1440p displays as to preserve the layout and visual intent.
-          Mobile support is limited, so things may be a a little unpredictable on smaller screens.
+          Mobile support is limited, this site is asset-heavy and so it may load slower on lower connection speeds.
         </div>
 
         <button
@@ -1281,6 +1331,8 @@ export default function Page() {
           onEnter={handleEnter}
         />
       )}
+
+      {activeView && <ExitButton onClick={closeActiveView} />}
 
       <ActiveOverlay activeView={activeView} onClose={closeActiveView} />
     </main>
