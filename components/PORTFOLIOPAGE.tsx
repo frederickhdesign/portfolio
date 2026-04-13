@@ -302,131 +302,143 @@ const playClickSound = () => {
                   </div>
 
                   {selectedProject && (
-                    <div
-                      className="project-overlay-shell"
-                      onClick={closeProject}
-                    >
-                      <div
-                        className="project-overlay-panel"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <div className="project-overlay-header">
-                          <div className="project-overlay-title">
-                            {selectedProject.title}
-                          </div>
+  <div
+    className="project-overlay-shell"
+    onClick={closeProject}
+  >
+    <div
+      className="project-overlay-panel"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="project-overlay-header">
+        <div className="project-overlay-title">
+          {selectedProject.title}
+        </div>
 
-                          <button
-                            type="button"
-                            className="close-button"
-                            onClick={closeProject}
-                            aria-label="Close project"
-                          >
-                            X
-                          </button>
-                        </div>
+        <button
+          type="button"
+          className="close-button"
+          onClick={closeProject}
+          aria-label="Close project"
+        >
+          X
+        </button>
+      </div>
 
-                        <div className="project-overlay-body">
-                          <div className="project-main-column">
-                            <div className="project-meta-block">
-                              <div className="project-meta-line">
-                                ID: {String(selectedProject.id).padStart(2, "0")}
-                              </div>
+      <div className="project-overlay-body">
+        <div className="project-main-column">
+          {selectedProject.video && (
+            <div className="project-video-wrapper">
+              <iframe
+                src={selectedProject.video}
+                title={`${selectedProject.title} video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
 
-                              <div className="project-meta-line">
-                                TAGS: {selectedProject.tags.join(" // ")}
-                              </div>
-                            </div>
+          <div className="project-meta-block">
+            <div className="project-meta-line">
+              ID: {String(selectedProject.id).padStart(2, "0")}
+            </div>
 
-                            <div className="project-description-block">
-  {selectedProject.description
-    .trim()
-    .split("\n")
-    .map((line, index) => {
-      const trimmed = line.trim();
+            <div className="project-meta-line">
+              TAGS: {selectedProject.tags.join(" // ")}
+            </div>
+          </div>
 
-      if (!trimmed) {
-        return <div key={index} className="spacer" />;
-      }
+          <div className="project-description-block">
+            {selectedProject.description
+              .trim()
+              .split("\n")
+              .map((line, index) => {
+                const trimmed = line.trim();
 
-      const isHeading =
-        trimmed === trimmed.toUpperCase() &&
-        trimmed.length < 60;
+                if (!trimmed) {
+                  return <div key={index} className="spacer" />;
+                }
 
-      if (isHeading) {
-        return (
-          <h2 key={index} className="project-heading">
-            {trimmed}
-          </h2>
-        );
-      }
+                const isHeading =
+                  trimmed === trimmed.toUpperCase() &&
+                  trimmed.length < 60;
 
-      return <p key={index}>{trimmed}</p>;
-    })}
-</div>
-                          </div>
+                if (isHeading) {
+                  return (
+                    <h2 key={index} className="project-heading">
+                      {trimmed}
+                    </h2>
+                  );
+                }
 
-                          <div className="project-sidebar">
-                            <div className="project-sidebar-label">IMAGES</div>
+                return <p key={index}>{trimmed}</p>;
+              })}
+          </div>
+        </div>
 
-                            <div className="project-image-list">
-                              {selectedProject.images.map((imageSrc, index) => (
-                                <button
-  key={`${selectedProject.id}-${index}`}
-  type="button"
-  className="project-thumb-button"
-  onClick={() => {
-    playClickSound();
-    setSelectedImage(imageSrc);
-  }}
->
-                                  <img
-                                    src={imageSrc}
-                                    alt={`${selectedProject.title} ${index + 1}`}
-                                    className="project-thumb-image"
-                                  />
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
+        <div className="project-sidebar">
+          <div className="project-sidebar-label">IMAGES</div>
 
-                        {selectedImage && (
-                          <div
-                            className="image-overlay-shell"
-                            onClick={() => setSelectedImage(null)}
-                          >
-                            <div
-                              className="image-overlay-panel"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <div className="image-overlay-header">
-                                <div className="image-overlay-title">
-                                  IMAGE_VIEWER
-                                </div>
+          <div className="project-image-list">
+            {selectedProject.images.map((imageSrc, index) => (
+              <button
+                key={`${selectedProject.id}-${index}`}
+                type="button"
+                className="project-thumb-button"
+                onClick={() => {
+                  playClickSound();
+                  setSelectedImage(imageSrc);
+                }}
+              >
+                <img
+                  src={imageSrc}
+                  alt={`${selectedProject.title} ${index + 1}`}
+                  className="project-thumb-image"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                                <button
-                                  type="button"
-                                  className="close-button"
-                                  onClick={() => setSelectedImage(null)}
-                                  aria-label="Close image viewer"
-                                >
-                                  X
-                                </button>
-                              </div>
+      {selectedImage && (
+        <div
+          className="image-overlay-shell"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="image-overlay-panel"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="image-overlay-header">
+              <div className="image-overlay-title">
+                IMAGE_VIEWER
+              </div>
 
-                              <div className="image-overlay-body">
-                                <img
-                                  src={selectedImage}
-                                  alt="Selected project image"
-                                  className="image-overlay-full"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+              <button
+                type="button"
+                className="close-button"
+                onClick={() => setSelectedImage(null)}
+                aria-label="Close image viewer"
+              >
+                X
+              </button>
+            </div>
+
+            <div className="image-overlay-body">
+              <img
+                src={selectedImage}
+                alt="Selected project image"
+                className="image-overlay-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
                 </div>
               </div>
             )}
@@ -1193,6 +1205,25 @@ const playClickSound = () => {
 .project-image-list::-webkit-scrollbar-corner,
 .project-main-column::-webkit-scrollbar-corner {
   background: rgba(12, 4, 4, 0.72);
+}
+
+.project-video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem; 
+  border: 1px solid rgba(255, 95, 95, 0.22);
+  background: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  box-shadow:
+  0 0 12px rgba(255, 80, 80, 0.15),
+  inset 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+.project-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
         .portfolio-card {

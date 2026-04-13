@@ -16,6 +16,7 @@ export type PortfolioEntry = {
   tags: PortfolioFilter[];
   description: string;
   images: string[];
+  video?: string;
 };
 
 export const portfolioFilters: PortfolioFilter[] = [
@@ -45,6 +46,8 @@ I've always felt theres a bit less choice in the fight game when it comes to att
 
 So far, I've built the core brand identity with logos, clothing concepts/prints, typography, colour schemes, styles and more. Watching HMMA grow step by step was extremely rewarding, especially when I got to recieve my first proper clothing samples.
 
+Hardened MMA is built up of 2 main lines. Fightwear, being the standard Hardened MMA, and streetwear, being Hardened Division. I've not made much work on the fightwear yet, however I've made many hoodies and shirts for streetwear, including selling to friends and family.
+
 WHAT HAVE I LEARNT
 
 Building Hardened MMA forced me to ask a lot of new questions, not just about design, but about business, purpose and identity. How do you build something true to your vision that someone would actually want? How do i balance creative freedom with commercial reality? Profit and authenticity? And so on.
@@ -59,5 +62,34 @@ The process has been short however eye opening to me, it has helped me learn abo
       "/foliowork/MENTALITYPF.webp",
       "/foliowork/HMMA Prints.webp",
     ],
+  },
+  {
+    id: 2,
+    title: "Original Magazine - Digital Consciousness",
+    cover: "/foliowork/PROFCOVER.webp",
+    tags: ["Graphic Design", "UI Design"],
+    description: `
+In my second year of university, we had a Design Profession module, where I was placed in a team with my 2 classmates, Harry and Cara.
+
+Our client for this module was a magazine called Original Magazine, and our brief was "Maschine". The brief was, well... brief, we basically got told to make something about machines/AI in any format.
+
+Our team chose to create a projection installation, consisting of a typeface, projection visual and an editorial.
+
+MY TASK
+
+I was in charge of creating the primary visual for this projection. I built the visual around the theme of an AI mind, analysing different sets of footage and gathering data. This was because we chose to make our installation about presenting AI in an ominous manner, bringing light to the danger and self awareness AI actually has these days, and the dangers that poses.
+
+The visual was made of 3 main, square screens. Unfortunately we didn't get a chance to put this installation together physically before the end of the semester, but I worked too hard on the visual to not include it here.
+
+WHAT DID I LEARN
+
+This module really pushed me to learn new things. In particular, Adobe After Effects. I had been dreading trying out After Effects before this module, I had never tried it much before and I had a lot of self doubt toward whether I'd be able to put together something good enough for the final project. Fortunately I was,  and in the process I learnt a lot about motion design and After Effects.
+`,
+    images: [
+      "/foliowork/MIDSCRN.webp",
+      "/foliowork/LEFTSCRN.webp",
+      "/foliowork/RIGHTSCRN.webp"
+    ],
+    video: "https://www.youtube.com/embed/zdSEodcigww",
   },
 ];
