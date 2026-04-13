@@ -276,6 +276,7 @@ const playClickSound = () => {
                               <option value="BLUE">BLUE</option>
                               <option value="GREEN">GREEN</option>
                               <option value="PURPLE">PURPLE</option>
+                              <option value="PINK">PINKKKK</option>
                             </select>
                           </div>
 
@@ -471,6 +472,10 @@ const playClickSound = () => {
 
         .wrapper.theme-purple {
           --theme-rgb: 190, 120, 255;
+        }
+
+        .wrapper.theme-pink {
+          --theme-rgb: 255, 120, 210;
         }
 
         .crt-frame {
