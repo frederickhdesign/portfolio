@@ -7,7 +7,9 @@ export type PortfolioFilter =
   | "Branding"
   | "Editorial"
   | "Web Design"
-  | "Game Design";
+  | "Game Design"
+  | "Typography";
+
 
 export type PortfolioEntry = {
   id: number;
@@ -27,6 +29,7 @@ export const portfolioFilters: PortfolioFilter[] = [
   "Editorial",
   "Web Design",
   "Game Design",
+  "Typography",
 ];
 
 export const portfolioEntries: PortfolioEntry[] = [
@@ -91,5 +94,41 @@ This module really pushed me to learn new things. In particular, Adobe After Eff
       "/foliowork/RIGHTSCRN.webp"
     ],
     video: "https://www.youtube.com/embed/zdSEodcigww",
+  },
+  {
+    id: 3,
+    title: "Glixels - Typeface",
+    cover: "/foliowork/GLIXCOVER.webp",
+    tags: ["Graphic Design", "Branding", "Typography"],
+    description: `
+ When creating this portfolio I wanted to create an entirely bespoke visual, from style and ideas to the very letters you read when scanning through.
+
+ As this portfolio is personal to me, I figured the most fitting style not only visually but narratively was a pixel typeface, designed by myself as I started my own design journey through the magic of pixel art.
+
+ Through this, I came to my very own typeface, Glixels. Constructed in aseprite, with only one weight (currently), I feel it's a strong pixel typeface, balancing being aesthetically pleasing with being legible.
+`,
+    images: [
+      "/foliowork/GLIXCOVER.webp", 
+      "/foliowork/GLIXLETTERS.webp", 
+    ],
+  },
+  {
+    id: 4,
+    title: "Old Dirty - Typeface",
+    cover: "/foliowork/ODCOVER.webp",
+    tags: ["Graphic Design", "Branding", "Typography"],
+    description: `
+I don't take on client projects too often, however I'm working on expanding my presence and gaining more clients within the near future. 
+
+For my first proper client work, I was put in contact with the brand Old Dirty, oldirtyyy on Instagram. 
+
+They wanted me to construct a typeface inspired by that of the typography seen on an old flyer from in the 1970's. This fitted their brand image and we worked together closely to bring the typeface to life exactly as envisioned.
+
+The final result was a unique, bespoke typeface curated specifically for the brand of Old Dirty.
+`,
+    images: [
+      "/foliowork/ODCOVER.webp",
+      "/foliowork/ODLETTERS.webp",
+    ],
   },
 ];
