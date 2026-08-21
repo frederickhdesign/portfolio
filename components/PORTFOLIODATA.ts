@@ -131,4 +131,30 @@ The final result was a unique, bespoke typeface curated specifically for the bra
       "/foliowork/ODLETTERS.webp",
     ],
   },
+    {
+    id: 5,
+    title: "Destiny 2 Inventory Exploration",
+    cover: "/foliowork/Slide 1.webp",
+    tags: ["UI Design", "Game Design"],
+    description: `
+I’ve been talking about wanting to really push toward UI design for a hot minute, and last night + today I made a new push towards it and learnt a valuable lesson.
+
+For my first proper creation I chose to take my favourite video game, Destiny 2 (please ignore my username it’s a joke and false) and I decided to recreate the iconic inventory menu. 
+
+I previously had another iteration of this, of which I posted to instagram reels only to get rinsed by the destiny community, safe to say they didn’t like it. After this response I was initially disheartened however after deleting a couple comments I deemed a bit too mean, I loaded back up with the goal of righting my mistakes.
+
+This is the final result that came of this, it’s far from perfect and in no way a match to Bungie’s incredible UI design teams work, however it’s a great first step toward developing my skills within UI design as a whole.
+`,
+    images: [
+      "/foliowork/Slide 1.webp",
+      "/foliowork/Slide 2.webp",
+      "/foliowork/Slide 3.webp",
+      "/foliowork/Slide 4.webp",
+      "/foliowork/Slide 5.webp",
+      "/foliowork/Slide 6.webp",
+      "/foliowork/Slide 7.webp",
+      "/foliowork/Slide 8.webp",
+      "/foliowork/Slide 9.webp",
+    ],
+  },
 ];
