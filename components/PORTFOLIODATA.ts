@@ -157,4 +157,18 @@ This is the final result that came of this, it’s far from perfect and in no wa
       "/foliowork/Slide 9.webp",
     ],
   },
+  {
+    id: 6,
+    title: "MOONVEIL - Band Logo",
+    cover: "/foliowork/MVLOGO.webp",
+    tags: ["Branding", "Typography"],
+    description: `
+ A buddy of mine recently came to me requesting a logo for his band. He's a musical wizard so do check his Instagram out @tomfrancklinmusic.
+
+ This is just a short entry showing the logo, we took inspiration from bands such as Alpha Wolf, Bring Me The Horizon and Bad Omens.
+`,
+    images: [
+      "/foliowork/MVLOGO.webp",
+    ],
+  },
 ];
