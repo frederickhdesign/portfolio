@@ -14,6 +14,12 @@ const DESIGN_WIDTH = 2560;
 const DESIGN_HEIGHT = 1440;
 const MIN_ZOOM = 0.35;
 const MAX_ZOOM = 2.5;
+// Mobile starts closer to the projects instead of showing the whole board.
+const MOBILE_START_ZOOM = 1.8;
+const MOBILE_BREAKPOINT = 768;
+// Limit the bitmap, NOT the CSS/world size, to avoid mobile Safari memory crashes.
+const MAX_CANVAS_PIXELS = 3_000_000;
+const MAX_CANVAS_DIMENSION = 2048;
 const ZOOM_SPEED = 0.0015;
 const GRID_SIZE = 36;
 const MOUSE_RADIUS = 150;
@@ -103,6 +109,20 @@ export default function Home() {
   const [stageHeight, setStageHeight] = useState(DESIGN_HEIGHT);
   const [camera, setCamera] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const [gridPointerTick, setGridPointerTick] = useState(0);
+  const gridPointerFrame = useRef<number | null>(null);
+  const lastGridPointerFrame = useRef(0);
+  const requestGridPointerDraw = () => {
+    if (gridPointerFrame.current !== null) return;
+    gridPointerFrame.current = requestAnimationFrame((now) => {
+      gridPointerFrame.current = null;
+      // Mouse glow at up to 30fps, rather than redrawing at 60+fps forever.
+      if (now - lastGridPointerFrame.current >= 33) {
+        lastGridPointerFrame.current = now;
+        setGridPointerTick((n) => n + 1);
+      }
+    });
+  };
   const [projectPreviewOpen, setProjectPreviewOpen] = useState(false);
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
 
@@ -421,6 +441,8 @@ export default function Home() {
       setStageHeight(window.innerHeight / scale);
     };
     updateViewport();
+    // Only override initial zoom on small screens; don't reset user zoom on rotation.
+    if (window.innerWidth <= MOBILE_BREAKPOINT) setZoom(MOBILE_START_ZOOM);
     window.addEventListener("resize", updateViewport);
     return () => {
       window.removeEventListener("resize", updateViewport);
@@ -479,13 +501,19 @@ export default function Home() {
       glowCtx.fillStyle = red;
       glowCtx.fillRect(0, 0, glowSize, glowSize);
     }
-    let frame: number;
     const draw = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = DESIGN_WIDTH;
       const height = stageHeight;
-      const targetWidth = Math.floor(width * dpr);
-      const targetHeight = Math.floor(height * dpr);
+      // Mobile can have a very tall logical stage (~5,500px). A full DPR
+      // backing store would consume hundreds of MB and crash Safari.
+      const preferredDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const resolutionScale = Math.min(
+        preferredDpr,
+        MAX_CANVAS_DIMENSION / Math.max(width, height),
+        Math.sqrt(MAX_CANVAS_PIXELS / (width * height))
+      );
+      const targetWidth = Math.max(1, Math.floor(width * resolutionScale));
+      const targetHeight = Math.max(1, Math.floor(height * resolutionScale));
       if (
         canvas.width !== targetWidth ||
         canvas.height !== targetHeight
@@ -495,7 +523,7 @@ export default function Home() {
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
       }
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.setTransform(targetWidth / width, 0, 0, targetHeight / height, 0, 0);
       ctx.clearRect(0, 0, width, height);
       const startWorldX =
         Math.floor((camera.x - width / 2 / zoom) / GRID_SIZE) * GRID_SIZE;
@@ -505,7 +533,12 @@ export default function Home() {
         Math.floor((camera.y - height / 2 / zoom) / GRID_SIZE) * GRID_SIZE;
       const endWorldY =
         Math.ceil((camera.y + height / 2 / zoom) / GRID_SIZE) * GRID_SIZE;
-      const multiplier = zoom < 0.45 ? 4 : zoom < 0.7 ? 2 : 1;
+      const estimatedIntersections =
+        ((endWorldX - startWorldX) / GRID_SIZE) *
+        ((endWorldY - startWorldY) / GRID_SIZE);
+      const multiplier = estimatedIntersections > 45000 ? 8
+        : estimatedIntersections > 12000 ? 4
+        : estimatedIntersections > 4000 ? 2 : 1;
       const step = GRID_SIZE * multiplier;
       ctx.lineWidth = Math.max(0.2, 0.55 * zoom);
       ctx.strokeStyle = `rgba(190,220,220,${GRID_LINE_OPACITY})`;
@@ -653,13 +686,16 @@ if (influence > 0 && glowCtx) {
           ctx.fillRect(0, 0, width, height);
         }
       }
-      frame = requestAnimationFrame(draw);
     };
+    // Draw only when the view, reveal or pointer changes.
+    // The old implementation ran a permanent animation loop and restarted it
+    // every time camera/zoom state changed.
     draw();
-    return () => cancelAnimationFrame(frame);
-  }, [revealed, camera, zoom, stageHeight]);
+  }, [revealed, camera, zoom, stageHeight, gridPointerTick]);
   useEffect(() => {
     return () => {
+      if (gridPointerFrame.current !== null) cancelAnimationFrame(gridPointerFrame.current);
+      if (viewAnimation.current !== null) cancelAnimationFrame(viewAnimation.current);
       if (revealAnimation.current) {
         cancelAnimationFrame(revealAnimation.current);
       }
@@ -673,10 +709,8 @@ if (influence > 0 && glowCtx) {
           if (!revealed) enterSite();
         }}
         onMouseMove={(e) => {
-          mouse.current = screenToStage(
-            e.clientX,
-            e.clientY
-          );
+          mouse.current = screenToStage(e.clientX, e.clientY);
+          requestGridPointerDraw();
         }}
         onWheel={(e) => {
           if (!interactive || projectPreviewOpen) return;
@@ -695,10 +729,8 @@ if (influence > 0 && glowCtx) {
           };
         }}
         onPointerMove={(e) => {
-          mouse.current = screenToStage(
-            e.clientX,
-            e.clientY
-          );
+          mouse.current = screenToStage(e.clientX, e.clientY);
+          requestGridPointerDraw();
           if (
             !dragging.current ||
             !interactive ||
@@ -729,10 +761,8 @@ if (influence > 0 && glowCtx) {
         }}
         onPointerLeave={() => {
           dragging.current = false;
-          mouse.current = {
-            x: -9999,
-            y: -9999,
-          };
+          mouse.current = { x: -9999, y: -9999 };
+          requestGridPointerDraw();
         }}
         onTouchStart={(e) => {
           if (
@@ -830,7 +860,7 @@ if (influence > 0 && glowCtx) {
                   muted
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   src="/Sprites/BGAnim.webm"
                   className="profile-orb-video"
                 />
@@ -1075,7 +1105,19 @@ if (influence > 0 && glowCtx) {
   </button>
 </div>
 
-{portfolioEntries.map((project) => {
+ {portfolioEntries.filter((project) => {
+                   if (activeProjectId === project.id) return true;
+                   // Leave a generous buffer so projects don't pop in at the edges.
+                   const margin = 1600;
+                   const halfWidth = DESIGN_WIDTH / (2 * zoom);
+                   const halfHeight = stageHeight / (2 * zoom);
+                   const px = project.x * GRID_SIZE;
+                   const py = project.y * GRID_SIZE;
+                   return px >= camera.x - halfWidth - margin &&
+                     px <= camera.x + halfWidth + margin &&
+                     py >= camera.y - halfHeight - margin &&
+                     py <= camera.y + halfHeight + margin;
+                 }).map((project) => {
                   const isActiveProject = activeProjectId === project.id;
 
                   return (
