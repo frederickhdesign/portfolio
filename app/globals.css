@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 :root {
@@ -22,28 +23,86 @@ body {
 body {
   font-family: var(--font-switzer), Arial, sans-serif;
 }
-/* Temporary mobile holding screen */
+
+/* MOBILE PORTFOLIO LANDING SCREEN */
+
+.mobile-portfolio-notice {
+  display: none;
+}
+
 @media (max-width: 767px) {
-  body::after {
-    content: "PLEASE VIEW ON DESKTOP\A\A This portfolio is currently optimised for PC.\A Mobile support is coming soon.";
-    white-space: pre-wrap;
+  .mobile-portfolio-notice {
+    display: flex;
     position: fixed;
     inset: 0;
     z-index: 2147483647;
-    background: #050505;
+    background: #080808;
     color: #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  .mobile-notice-content {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    margin: auto;
+  }
+
+  .mobile-notice-icon {
+    width: 58px;
+    height: 58px;
+    border: 1px solid #444;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
-    text-align: center;
-    font-family: inherit;
-    font-size: 17px;
-    line-height: 1.7;
-    letter-spacing: 0.02em;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -0.08em;
   }
 
-  body {
-    overflow: hidden;
+  .mobile-notice-content h1 {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .mobile-notice-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #a3a3a3;
+  }
+
+  .mobile-notice-button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-notice-button:hover,
+  .mobile-notice-button:focus-visible {
+    background: #fff;
+    color: #000;
+  }
+
+  .mobile-notice-footer {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #777;
   }
 }

@@ -1,6 +1,8 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import MobilePortfolioNotice from "./components/MobilePortfolioNotice";
 
 const switzer = localFont({
   src: [
@@ -50,6 +52,7 @@ export default function RootLayout({
       className={`${switzer.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <MobilePortfolioNotice />
         {children}
       </body>
     </html>

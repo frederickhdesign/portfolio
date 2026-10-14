@@ -912,24 +912,6 @@ function IntroOverlay({
           Graphic - UI Designer
         </div>
 
-        <div
-          style={{
-            marginTop: "1px",
-            fontFamily: "Glixels, monospace",
-            fontSize: "clamp(12px, 1vw, 18px)",
-            letterSpacing: "0.08em",
-            lineHeight: 1.6,
-            color: "rgba(243, 238, 226, 0.82)",
-            maxWidth: "740px",
-            opacity: showMessage ? 1 : 0,
-            transform: showMessage ? "translateY(0px)" : "translateY(10px)",
-            transition: "opacity 500ms ease, transform 500ms ease",
-          }}
-        >
-          This portfolio is optimised for 1080p and 1440p displays as to preserve the layout and visual intent.
-          Mobile support is limited, this site is asset-heavy and so it may load slower on lower connection speeds.
-        </div>
-
         <button
           onClick={onEnter}
           style={{
