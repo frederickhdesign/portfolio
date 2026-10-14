@@ -737,7 +737,7 @@ function CVOverlay({ onClose }: { onClose: () => void }) {
         }}
       >
         <img
-          src="/sprites/CV.webp"
+          src="/Sprites/CV.webp"
           alt="Frederick Harden CV"
           draggable={false}
           style={{
@@ -751,7 +751,7 @@ function CVOverlay({ onClose }: { onClose: () => void }) {
         />
 
         <img
-          src="/sprites/PAPERSTAIN.webp"
+          src="/Sprites/PAPERSTAIN.webp"
           alt=""
           draggable={false}
           style={{
@@ -830,7 +830,7 @@ function ActiveOverlay({
 function IntroOverlay({
   introPhase,
   overlayOpacity,
-  logoSrc = "/sprites/LOGOFH.webp",
+  logoSrc = "/Sprites/LOGOFH.webp",
   onEnter,
 }: IntroOverlayProps) {
   const showTitle =

@@ -1530,7 +1530,7 @@ if (influence > 0 && glowCtx) {
               >
                 <div className="profile-bar">
                   <img
-                    src="/sprites/profilebar.png"
+                    src="/Sprites/profilebar.png"
                     alt=""
                     draggable={false}
                     className="profile-bar-image"
