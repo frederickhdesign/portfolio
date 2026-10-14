@@ -22,3 +22,28 @@ body {
 body {
   font-family: var(--font-switzer), Arial, sans-serif;
 }
+/* Temporary mobile holding screen */
+@media (max-width: 767px) {
+  body::after {
+    content: "PLEASE VIEW ON DESKTOP\A\A This portfolio is currently optimised for PC.\A Mobile support is coming soon.";
+    white-space: pre-wrap;
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    background: #050505;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}
