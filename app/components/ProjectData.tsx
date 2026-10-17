@@ -220,7 +220,7 @@ They wanted me to construct a typeface inspired by that of the typography seen o
 The final result was a unique, bespoke typeface curated specifically for the brand of Old Dirty.
 `,
     typography: {
-      fontFamily: "Old Dirty",
+      fontFamily: "OldDirty",
       displayName: "OLD DIRTY",
 
       uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
